@@ -77,7 +77,7 @@ def desssendmsgtowx(text='服务器挂掉啦~~',desp=''):
         print('未配置推送微信')
         text = '未配置server酱'
         return
-    url = f"https://sc.ftqq.com/{SCKEY}.send?text={text}&desp={desp}&tittle=今日B站任务报告
+    url = f"https://sc.ftqq.com/{SCKEY}.send?text={text}&desp={desp}&tittle=今日B站任务报告"
     requests.get(url=url)
 
 def sharevideo(aid):
@@ -92,23 +92,23 @@ def sharevideo(aid):
     else:
         print('每日任务分享视频：' + share_res['message'])
 
-    def silverToCoins(self):
-        res1 = requests.get(url="https://api.live.bilibili.com/xlive/web-ucenter/user/get_user_info",headers=headers)
-        silver_num = json.loads(res1.text)['data']['silver']
-        if silver_num < 700:
-            print('直播银瓜子不足700兑换硬币')
-            return
-        post_data = {
-            "csrf_token": bili_jct,
-            "csrf": bili_jct,
-            # "visit_id": ""
-        }
-        res2 = requests.post(url="https://api.live.bilibili.com/pay/v1/Exchange/silver2coin",headers=headers, data=post_data)
-        res_silver2Coins = json.loads(res2.text)
-        if res_silver2Coins['code'] == 0:
-            print('直播银瓜子兑换结果：成功')
-        else:
-            print('直播银瓜子兑换结果：'+res_silver2Coins['message'])
+def silverToCoins(self):
+    res1 = requests.get(url="https://api.live.bilibili.com/xlive/web-ucenter/user/get_user_info",headers=headers)
+    silver_num = json.loads(res1.text)['data']['silver']
+    if silver_num < 700:
+        print('直播银瓜子不足700兑换硬币')
+        return
+    post_data = {
+        "csrf_token": bili_jct,
+        "csrf": bili_jct,
+        # "visit_id": ""
+    }
+    res2 = requests.post(url="https://api.live.bilibili.com/pay/v1/Exchange/silver2coin",headers=headers, data=post_data)
+    res_silver2Coins = json.loads(res2.text)
+    if res_silver2Coins['code'] == 0:
+        print('直播银瓜子兑换结果：成功')
+    else:
+        print('直播银瓜子兑换结果：'+res_silver2Coins['message'])
 
 def report(aid, cid, progres):
     post_data = {
