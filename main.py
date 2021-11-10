@@ -8,6 +8,7 @@ if __name__ == '__main__':
     comicSign()             #漫画签到
     hotvideolist = getHotVideo()
     sharevideo(aid=hotvideolist[random.randint(1, 50)]['aid'])      #漫画签到
+    slivertocoin()
     a = random.randint(1, 50)
     report(hotvideolist[a]['aid'], hotvideolist[a]['cid'], 1000)    #观看视频
     for item in hotvideolist:  #投币
@@ -16,5 +17,5 @@ if __name__ == '__main__':
             break
         coin(item['aid'])
     if checkTaskSituation():
-        sendmsgtowx('今日任务已完成，程序结束,')
+        sendmsgtowx('今日任务已完成，程序结束')
 

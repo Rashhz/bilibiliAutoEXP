@@ -72,14 +72,13 @@ def coin(aid):
         print('投币失败: 失败原因：' + coinRes['message'])
 
 # 通知到微信
-def sendmsgtowx(text='服务器挂掉啦~~',desp=''):
+def desssendmsgtowx(text='服务器挂掉啦~~',desp=''):
     if SCKEY == '':
         print('未配置推送微信')
         text = '未配置server酱'
         return
-    else:
-        url = "https://sc.ftqq.com/"+SCKEY+".send?text="+text+"&desp="+desp
-        requests.get(url=url)
+    url = f"https://sc.ftqq.com/{SCKEY}.send?text={text}&desp={desp}&tittle=今日B站任务报告
+    requests.get(url=url)
 
 def sharevideo(aid):
     post_data = {
@@ -126,7 +125,7 @@ def report(aid, cid, progres):
         print('上报视频进度失败：' + Res['message'])
 
 def checkTaskSituation():
-    flag1 = flag2 = flag3 = False
+    flag1 = flag2 = flag3 = flag4 = False
     res = requests.get(url='https://account.bilibili.com/home/reward', headers=headers)
     if res.json()['data']['login'] == True:
         flag1 = True
@@ -140,4 +139,16 @@ def checkTaskSituation():
         flag3 = True
     else:
         print("未得到观看视频经验")
-    return flag1 and flag2 and flag3
+    if res.json()['data']['share_av'] == True:
+        flag4 = True
+    else:
+        print("未得到分享视频经验")
+    return flag1 and flag2 and flag3 and flag4
+
+
+def slivertocoin():
+    try:
+        res = requests.post(url="https://api.live.bilibili.com/pay/v1/Exchange/silver2coin", headers=headers)
+        print(res.text)
+    except:
+        print("银瓜子转换为硬币失败，发生异常")
