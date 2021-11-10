@@ -18,7 +18,7 @@ def getuserInfo():
         print(f"你的当前等级是{currentlevel}, 当前经验为{current_exp}, 离下一级还有{current_min}, 下一级共需{next_exp}")
         print(f"现在还有{money}硬币, 是{vip}, B币余额为{bcoin_balance}")
     except AttributeError:
-        print("发生错误，错误信息：" + {response1.text})
+        print("请求个人信息发生未知错误")
 
 def liveSign():
         try:
@@ -72,13 +72,17 @@ def coin(aid):
         print('投币失败: 失败原因：' + coinRes['message'])
 
 # 通知到微信
-def desssendmsgtowx(text='服务器挂掉啦~~',desp=''):
+def sendmsgtowx(text='今日B站签到报告',desp=''):
     if SCKEY == '':
         print('未配置推送微信')
         text = '未配置server酱'
         return
-    url = f"https://sc.ftqq.com/{SCKEY}.send?text={text}&desp={desp}&tittle=今日B站任务报告"
-    requests.get(url=url)
+    url = f"https://sc.ftqq.com/{SCKEY}.send"
+    data = {
+        'text': text,
+        'desp': desp
+    }
+    requests.post(url=url,data=data)
 
 def sharevideo(aid):
     post_data = {
@@ -92,7 +96,7 @@ def sharevideo(aid):
     else:
         print('每日任务分享视频：' + share_res['message'])
 
-def silverToCoins(self):
+def silverToCoins():
     res1 = requests.get(url="https://api.live.bilibili.com/xlive/web-ucenter/user/get_user_info",headers=headers)
     silver_num = json.loads(res1.text)['data']['silver']
     if silver_num < 700:

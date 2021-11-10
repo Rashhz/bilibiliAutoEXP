@@ -7,7 +7,7 @@ if __name__ == '__main__':
     liveSign()              #直播签到
     comicSign()             #漫画签到
     hotvideolist = getHotVideo()
-    sharevideo(aid=hotvideolist[random.randint(1, 50)]['aid'])      #漫画签到
+    sharevideo(aid=hotvideolist[random.randint(1, 50)]['aid'])      #分享视频
     slivertocoin()
     a = random.randint(1, 50)
     report(hotvideolist[a]['aid'], hotvideolist[a]['cid'], 1000)    #观看视频
