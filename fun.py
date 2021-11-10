@@ -17,6 +17,7 @@ def getuserInfo():
         bcoin_balance = str(response1['data']["wallet"]["bcoin_balance"])
         print(f"你的当前等级是{currentlevel}, 当前经验为{current_exp}, 离下一级还有{current_min}, 下一级共需{next_exp}")
         print(f"现在还有{money}硬币, 是{vip}, B币余额为{bcoin_balance}")
+        return f"你的当前等级是{currentlevel}, 当前经验为{current_exp}, 下一级共需{next_exp}, 现在还有{money}硬币, B币余额为{bcoin_balance}"
     except AttributeError:
         print("请求个人信息发生未知错误")
 
