@@ -3,7 +3,7 @@ import random
 
 
 if __name__ == '__main__':
-    getuserInfo()            #基本信息
+    user = User()          #基本信息
     liveSign()              #直播签到
     comicSign()             #漫画签到
     hotvideolist = getHotVideo()
@@ -16,6 +16,11 @@ if __name__ == '__main__':
             print(('投币任务已完成，已获得所有投币经验'))
             break
         coin(item['aid'])
+    charge()
+    desp = f'你的当前等级是{user.currentlevel}, 当前经验为{user.current_exp}, 离下一级还有{user.current_min}, 下一级还需{user.next_exp - user.current_exp}经验, \
+    还有{int((user.next_exp - user.current_exp)/65)}天升级 ,B币余额为{user.bcoin_balance}'
+    if user.bcoin_balance >= 5:
+        charge()
     if checkTaskSituation():
-        sendmsgtowx('今日哔哩哔哩任务已完成，程序结束', desp=getuserInfo())
+        sendmsgtowx(f'今日哔哩哔哩任务已完成，还有{int((user.next_exp - user.current_exp)/65)}天升级', desp)
 

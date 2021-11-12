@@ -3,21 +3,19 @@ import requests
 from setting import *
 
 #获取用户基本信息
-def getuserInfo():
+class User:
     try:
-        response1 = requests.get(url="https://api.bilibili.com/x/web-interface/nav", headers=headers)
-        response1 = json.loads(response1.text)
-        currentlevel = str(response1['data']['level_info']['current_level'])
-        current_min = response1['data']['level_info']['current_min']
-        current_exp = response1['data']['level_info']['current_exp']
-        next_exp = response1['data']['level_info']['next_exp']
-        money = str(response1['data']['money'])
-        vip = response1['data']["vip_label"]["text"]
-        mid = str(response1['data']["wallet"]["mid"])
-        bcoin_balance = str(response1['data']["wallet"]["bcoin_balance"])
-        print(f"你的当前等级是{currentlevel}, 当前经验为{current_exp}, 离下一级还有{current_min}, 下一级共需{next_exp}")
-        print(f"现在还有{money}硬币, 是{vip}, B币余额为{bcoin_balance}")
-        return f"你的当前等级是{currentlevel}, 当前经验为{current_exp}, 下一级还需{next_exp - current_exp}经验, 还有{int((next_exp - current_exp)/65)}天升级，现在还有{money}硬币, B币余额为{bcoin_balance}"
+        def __init__(self):
+            response1 = requests.get(url="https://api.bilibili.com/x/web-interface/nav", headers=headers)
+            response1 = json.loads(response1.text)
+            self.currentlevel = str(response1['data']['level_info']['current_level'])
+            self.current_min = response1['data']['level_info']['current_min']
+            self.current_exp = response1['data']['level_info']['current_exp']
+            self.next_exp = response1['data']['level_info']['next_exp']
+            self.money = str(response1['data']['money'])
+            self.vip = response1['data']["vip_label"]["text"]
+            self.mid = str(response1['data']["wallet"]["mid"])
+            self.bcoin_balance = str(response1['data']["wallet"]["bcoin_balance"])
     except AttributeError:
         print("请求个人信息发生未知错误")
 
@@ -157,3 +155,23 @@ def slivertocoin():
         print(res.text)
     except:
         print("银瓜子转换为硬币失败，发生异常")
+
+# def comicVIP():
+#     try:
+#         res = requests.post(url='https://manga.bilibili.com/twirp/user.v1.User/GetVipRewardhttps://manga.bilibili.com/twirp/user.v1.User/GetVipReward', headers=headers)
+#         print(res.text)
+#     except:
+#         pass
+
+def charge():
+    data = {
+        'bp_num': '5',
+        'is_bp_remains_prior': 'true',
+        'up_mid': '293793435',
+        'otype': 'up',
+        'oid': '430521080',
+        'csrf': bili_jct
+    }
+    res = requests.post(url='https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick', data=data, headers=headers)
+    print(res.text)
+
