@@ -17,5 +17,5 @@ if __name__ == '__main__':
             break
         coin(item['aid'])
     if checkTaskSituation():
-        sendmsgtowx('今日任务已完成，程序结束', desp=getuserInfo())
+        sendmsgtowx('今日哔哩哔哩任务已完成，程序结束', desp=getuserInfo())
 
