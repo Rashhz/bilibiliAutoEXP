@@ -156,20 +156,24 @@ def slivertocoin():
     except:
         print("银瓜子转换为硬币失败，发生异常")
 
-# def comicVIP():
-#     try:
-#         res = requests.post(url='https://manga.bilibili.com/twirp/user.v1.User/GetVipRewardhttps://manga.bilibili.com/twirp/user.v1.User/GetVipReward', headers=headers)
-#         print(res.text)
-#     except:
-#         pass
+def comicVIP(): #暂时未完成，需要再确认api的请求方式,带上csrf可以出现鉴权画面但是仍然无法进行正常返回
+    data = {
+        'csrf': bili_jct,
+    }
+    try:
 
-def charge():
+        res = requests.post(url='https://manga.bilibili.com/twirp/user.v1.User/GetVipRewardhttps://manga.bilibili.com/twirp/user.v1.User/GetVipReward', headers=headers, data=data)
+        print(res.text)
+    except:
+        pass
+
+def charge(mid):
     data = {
         'bp_num': '5',
         'is_bp_remains_prior': 'true',
         'up_mid': '293793435',
         'otype': 'up',
-        'oid': '430521080',
+        'oid': mid,
         'csrf': bili_jct
     }
     res = requests.post(url='https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick', data=data, headers=headers)
