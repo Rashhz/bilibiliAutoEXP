@@ -148,18 +148,7 @@ def checkTaskSituation():
         print("未得到分享视频经验")
     return flag1 and flag2 and flag3 and flag4
 
-
-def slivertocoin():
-    data = {
-        'csrf': bili_jct
-    }
-    try:
-        res = requests.post(url="https://api.live.bilibili.com/pay/v1/Exchange/silver2coin", headers=headers, data=data)
-        print(res.text)
-    except:
-        print("银瓜子转换为硬币失败，发生异常")
-
-def comicVIP(): #暂时未完成，需要再确认api的请求方式,带上csrf可以出现鉴权画面但是仍然无法进行正常返回
+def comicVIP():
     data = {
         'csrf': bili_jct,
     }

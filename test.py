@@ -1,4 +1,4 @@
 
 from fun import *
 
-comicVIP()
+silverToCoins()

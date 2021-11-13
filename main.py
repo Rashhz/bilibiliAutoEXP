@@ -8,7 +8,7 @@ if __name__ == '__main__':
     comicSign()             #漫画签到
     hotvideolist = getHotVideo()
     sharevideo(aid=hotvideolist[random.randint(1, 50)]['aid'])      #分享视频
-    slivertocoin()
+    silverToCoins()
     a = random.randint(1, 50)
     report(hotvideolist[a]['aid'], hotvideolist[a]['cid'], 1000)    #观看视频
     for item in hotvideolist:  #投币
