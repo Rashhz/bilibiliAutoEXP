@@ -171,7 +171,7 @@ def charge(mid):
     data = {
         'bp_num': '5',
         'is_bp_remains_prior': 'true',
-        'up_mid': '293793435',
+        'up_mid': mid,
         'otype': 'up',
         'oid': mid,
         'csrf': bili_jct
