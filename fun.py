@@ -150,8 +150,11 @@ def checkTaskSituation():
 
 
 def slivertocoin():
+    data = {
+        'csrf': bili_jct
+    }
     try:
-        res = requests.post(url="https://api.live.bilibili.com/pay/v1/Exchange/silver2coin", headers=headers)
+        res = requests.post(url="https://api.live.bilibili.com/pay/v1/Exchange/silver2coin", headers=headers, data=data)
         print(res.text)
     except:
         print("银瓜子转换为硬币失败，发生异常")
@@ -171,7 +174,7 @@ def charge(mid):
     data = {
         'bp_num': '5',
         'is_bp_remains_prior': 'true',
-        'up_mid': '293793435',
+        'up_mid': mid,
         'otype': 'up',
         'oid': mid,
         'csrf': bili_jct
