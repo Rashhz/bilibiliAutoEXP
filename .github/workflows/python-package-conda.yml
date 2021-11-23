@@ -36,5 +36,7 @@ jobs:
               ${{ runner.os }}-
       - run: pip install -r requirements.txt
       # Runs a single command using the runners shell
-      - name: Run the Python scirpt
-        run: python main.py
+      - name: run a python scipt
+        with: 
+            cookies: ${{ secrets.BILI_COOKIES }}
+            run: python main.py cookies
