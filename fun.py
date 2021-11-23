@@ -59,7 +59,7 @@ def coin(aid):
     data = {
         "aid": aid,
         "multiply": coinnumber,
-        "select_like": select_like,
+        "select_like": 0,
         "cross_domain": "true",
         "csrf": bili_jct
     }

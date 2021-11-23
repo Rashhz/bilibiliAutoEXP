@@ -1,3 +1,4 @@
+
 from fun import *
 import random
 
@@ -10,6 +11,7 @@ if __name__ == '__main__':
     sharevideo(aid=hotvideolist[random.randint(1, 50)]['aid'])      #分享视频
     silverToCoins()
     a = random.randint(1, 50)
+
     report(hotvideolist[a]['aid'], hotvideolist[a]['cid'], 1000)    #观看视频
     for item in hotvideolist:  #投币
         if getCoinTodayExp() == 50:
