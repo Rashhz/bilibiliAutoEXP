@@ -1,4 +1,5 @@
+import sys
 
 from fun import *
 
-silverToCoins()
+print(cookies)
