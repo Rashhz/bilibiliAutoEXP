@@ -18,7 +18,7 @@ if __name__ == '__main__':
             print(('投币任务已完成，已获得所有投币经验'))
             break
         coin(item['aid'])
-    desp = f'你的当前等级是{user.currentlevel}, 当前经验为{user.current_exp}, 离下一级还有{user.current_min}, 下一级还需{user.next_exp - user.current_exp}经验, \
+    desp = f'你的当前等级是{user.currentlevel}, 当前经验为{user.current_exp}, 下一级还需{user.next_exp - user.current_exp}经验, \
     还有{int((user.next_exp - user.current_exp)/65)}天升级 ,B币余额为{user.bcoin_balance}'
     if int(user.bcoin_balance) >= 5:
         charge(int(user.mid))
